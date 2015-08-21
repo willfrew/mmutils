@@ -243,7 +243,8 @@ class RadixTree(object):
         f.write(chr(42)) #So long, and thanks for all the fish!
         f.write(''.join(self.data_segments))
 
-        f.write('csv2dat.py') #.dat file comment - can be anything
+        f.write(chr(0xFF) * 3)
+        f.write('csv2dat.py 19720101') # .dat file info string 
         f.write(chr(0xFF) * 3)
         f.write(chr(self.edition))
         f.write(self.encode_rec(len(self.segments), self.segreclen))
@@ -475,4 +476,3 @@ if __name__ == '__main__':
     rval = main()
     logging.shutdown()
     sys.exit(rval)
-
